@@ -18,3 +18,9 @@ func (c *User) BeforeCreate(scope *gorm.DB) error {
 	c.ID = utils.GenSnowflakeId()
 	return nil
 }
+
+type LoginReq struct {
+	gorm.Model
+	Username string `gorm:"unique"`
+	Password string
+}
