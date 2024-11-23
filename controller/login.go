@@ -24,6 +24,11 @@ func Login(c *gin.Context) {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "pwd fild"})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"ok": "ok"})
+	token, err := utils.GenerateJwt(loginReq.Username)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"CreateTokenerror": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"token": token})
 
 }
