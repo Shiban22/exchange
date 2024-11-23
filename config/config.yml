@@ -1,0 +1,16 @@
+app:
+  name: CurrencyExchangeApp
+  port: :3000
+
+database:
+  dns: root:PXDN93VRKUm8TeE7@tcp(127.0.0.1:33069)/gin?charset=utf8mb4&parseTime=True&loc=Local
+#  Host: 127.0.0.1:3306
+#  Port: 33069
+#  User: root
+#  Password: 123456
+#  Name: test
+
+redis:
+  addr: localhost:6379
+  DB: 0
+  Password: ""
