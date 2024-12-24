@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"exchange/controller"
+	"exchange/mid"
 )
 
 func SetAuthRouter() *gin.Engine {
@@ -20,5 +21,11 @@ func SetAuthRouter() *gin.Engine {
 		//})
 		auth.POST("/register", controller.Register)
 	}
+	api := r.Group("/api")
+	api.Use(mid.AuthMiddleWare())
+	{
+		api.POST("/rate", controller.Rate)
+	}
+
 	return r
 }

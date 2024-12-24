@@ -26,5 +26,10 @@ func Register(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"ok": "ok"})
+	token, err := utils.GenerateJwt(user.Username)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"CreateTokenerror": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"token": token})
 }
